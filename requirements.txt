@@ -2,5 +2,4 @@ flask[async]
 gunicorn
 python-dotenv
 aiomysql
-discord
-pynacl
+Flask-Discord

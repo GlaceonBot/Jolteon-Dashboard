@@ -5,15 +5,25 @@ import aiomysql
 import pathlib
 import dotenv
 from markupsafe import escape
+from flask_discord import DiscordOAuth2Session, requires_authorization, Unauthorized
+
 
 dotenv.load_dotenv()
 app = Flask(__name__)
-
+app.secret_key = os.getenv('secret_key')
 path = pathlib.PurePath()
 root = path / "html"
+app.config["DISCORD_CLIENT_ID"] = os.getenv('app_id')   # Discord client ID.
+app.config["DISCORD_CLIENT_SECRET"] = os.getenv('client_secret')
+app.config["DISCORD_REDIRECT_URI"] = os.getenv('redirect_uri')
+app.config["DISCORD_BOT_TOKEN"] = os.getenv('bot_token')  
+
+def contents(file) -> str:
+  with open(root / file) as file:
+    return file.read()
 
 @app.route("/")
-async def lol():
+async def root_directory_serv():
   homepage = open(root / "index.html", 'r')
   return homepage.read()
 
@@ -34,9 +44,13 @@ async def hello_world(guildid):
     factoids_and_contents_list = []
     if factoids:
         for tag in factoids:
-          complete_factoid_info = f"The tag <code>{escape(tag[0])}</code> has the contents <code>{escape(tag[1])}</code>"
+          complete_factoid_info = f'''<tr>
+          <td>{tags[0]}</td>
+          <td>{tags[1]}</td>
+          </tr>'''
           factoids_and_contents_list.append(complete_factoid_info)
-        return "<br>".join(factoids_and_contents_list)
+          
+        return contents("tagslist-top.html") + "".join(factoids_and_contents_list) + contents("tagslist-bottom.html")
 
         
     else:
