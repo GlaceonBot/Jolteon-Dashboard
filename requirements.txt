@@ -1,0 +1,4 @@
+flask[async]
+aiomysql
+discord
+pynacl
