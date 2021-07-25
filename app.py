@@ -50,7 +50,7 @@ async def hello_world(guildid):
           </tr>'''
           factoids_and_contents_list.append(complete_factoid_info)
           
-        return contents("tagslist-top.html").format(guildid=guildid, guildid=guildid) + "".join(factoids_and_contents_list) + contents("tagslist-bottom.html")
+        return contents("tagslist-top.html").format(guildid=guildid) + "".join(factoids_and_contents_list) + contents("tagslist-bottom.html")
 
         
     else:
