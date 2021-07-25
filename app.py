@@ -24,17 +24,14 @@ def contents(file) -> str:
   with open(root / file) as file:
     return file.read()
 
-@app.route("/<path:path>")
-async def serve_old_site(path):
-  return flask.send_from_directory('static', path)
 
-@app.route("/jolteon/")
+@app.route("/")
 async def root_directory_serv():
   homepage = open(root / "index.html", 'r')
   return homepage.read()
 
 
-@app.route("/jolteon/<int:guildid>")
+@app.route("/<int:guildid>")
 async def hello_world(guildid):
     if type(guildid) != int:
         nothere = open(root / "nothere.html", 'r')
@@ -56,24 +53,24 @@ async def hello_world(guildid):
           </tr>'''
           factoids_and_contents_list.append(complete_factoid_info)
           
-        return contents("tagslist-top.html").replace('[[guildid]]', str(guildid)) + "".join(factoids_and_contents_list) + contents("tagslist-bottom.html")
+        return contents("jolteon/tagslist-top.html").replace('[[guildid]]', str(guildid)) + "".join(factoids_and_contents_list) + contents("jolteon/tagslist-bottom.html")
 
         
     else:
         nothere = open(root / "nothere.html", 'r')
         return nothere.read()
 
-@app.route("/jolteon/invite")
+@app.route("/invite")
 async def bot_invite_redirect():
   redirect = open(root / "invite.html", 'r')
   return redirect.read()
 
-@app.route("/jolteon/login/")
+@app.route("/login/")
 def login():
     return discord.create_session()
 
 
-@app.route("/jolteon/callback/")
+@app.route("/callback/")
 def callback():
     discord.callback()
     user = discord.fetch_user()
@@ -85,7 +82,7 @@ def redirect_unauthorized(e):
     return redirect(url_for("/login"))
 
 
-@app.route("/jolteon/me/")
+@app.route("/me/")
 @requires_authorization
 def me():
     user = discord.fetch_user()
