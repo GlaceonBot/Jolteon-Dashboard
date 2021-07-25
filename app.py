@@ -1,4 +1,4 @@
-impoty flask
+import flask
 import discord
 import os
 import aiomysql
