@@ -20,6 +20,9 @@ async def lol():
 
 @app.route("/<int:guildid>")
 async def hello_world(guildid):
+    if type(guildid) != int:
+        nothere = open(root / "nothere.html", 'r')
+        return nothere.read()
     conn = await aiomysql.connect(host=os.getenv('SQLserverhost'),
                                       user=os.getenv('SQLusername'),
                                       password=os.getenv('SQLpassword'),
