@@ -42,3 +42,8 @@ async def hello_world(guildid):
     else:
         nothere = open(root / "nothere.html", 'r')
         return nothere.read()
+
+@app.route("/invite")
+async def bot_invite_redirect():
+  redirect = open(root / "invite.html", 'r')
+  return redirect.read()
