@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<link href="tags.css" rel="stylesheet">
+<style>
+  table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
 
+    th, td {
+        padding: 20px;
+        font-size: 20px;
+    }
+</style>
 <head>
     <meta charset="UTF-8">
     <title>Jolteon tags list</title>
     <meta property="og:site_name" content="Glaceon help page">
-    <meta property="og:url" content="https://glaceon.xyz/jolteon/{guildid}">
+    <meta property="og:url" content="https://glaceon.xyz/jolteon/[[guildid]]">
     <meta property="og:title" content="Find the tags you can use with Jolteon">
     <meta property="og:description" content="Jolteon list of tags in your server">
     <meta property="og:type" content="website">
@@ -15,7 +24,7 @@
 </head>
 <body>
 <div style="text-align: center">
-    <h1>List of tags for {guildid}</h1>
+    <h1>List of tags for your server</h1>
 </div>
 <div style="position:relative; top:40px; padding-bottom:40px; display: flex; justify-content: center;">
     <table style="width:65%">
