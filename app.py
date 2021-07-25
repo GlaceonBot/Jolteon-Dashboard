@@ -97,4 +97,6 @@ def me():
     </html>"""
 
 @app.route("/guilds")
+def guild_lister():
+  return("Someday thus will do something")
 
