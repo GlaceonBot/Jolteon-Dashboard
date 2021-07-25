@@ -45,8 +45,8 @@ async def hello_world(guildid):
     if factoids:
         for tag in factoids:
           complete_factoid_info = f'''<tr>
-          <td>{tags[0]}</td>
-          <td>{tags[1]}</td>
+          <td>{tag[0]}</td>
+          <td>{tag[1]}</td>
           </tr>'''
           factoids_and_contents_list.append(complete_factoid_info)
           
