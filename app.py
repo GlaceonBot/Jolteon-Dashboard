@@ -3,8 +3,10 @@ import discord
 import os
 import aiomysql
 import pathlib
+import dotenv
 from markupsafe import escape
 
+dotenv.load_dotenv()
 app = Flask(__name__)
 
 path = pathlib.PurePath()
