@@ -1,4 +1,4 @@
-from flask import Flask
+impoty flask
 import discord
 import os
 import aiomysql
@@ -9,7 +9,7 @@ from flask_discord import DiscordOAuth2Session, requires_authorization, Unauthor
 
 
 dotenv.load_dotenv()
-app = Flask(__name__)
+app = flask.Flask(__name__)
 app.secret_key = os.getenv('secret_key')
 path = pathlib.PurePath()
 root = path / "html"
@@ -24,13 +24,17 @@ def contents(file) -> str:
   with open(root / file) as file:
     return file.read()
 
-@app.route("/")
+@app.route("/<path:path>")
+async def serve_old_site(path):
+  return flask.send_from_directory('static', path)
+
+@app.route("/jolteon/")
 async def root_directory_serv():
   homepage = open(root / "index.html", 'r')
   return homepage.read()
 
 
-@app.route("/<int:guildid>")
+@app.route("/jolteon/<int:guildid>")
 async def hello_world(guildid):
     if type(guildid) != int:
         nothere = open(root / "nothere.html", 'r')
@@ -59,17 +63,17 @@ async def hello_world(guildid):
         nothere = open(root / "nothere.html", 'r')
         return nothere.read()
 
-@app.route("/invite")
+@app.route("/jolteon/invite")
 async def bot_invite_redirect():
   redirect = open(root / "invite.html", 'r')
   return redirect.read()
 
-@app.route("/login/")
+@app.route("/jolteon/login/")
 def login():
     return discord.create_session()
 
 
-@app.route("/callback/")
+@app.route("/jolteon/callback/")
 def callback():
     discord.callback()
     user = discord.fetch_user()
@@ -81,7 +85,7 @@ def redirect_unauthorized(e):
     return redirect(url_for("/login"))
 
 
-@app.route("/me/")
+@app.route("/jolteon/me/")
 @requires_authorization
 def me():
     user = discord.fetch_user()
