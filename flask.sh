@@ -1,3 +1,3 @@
-./venv/bin/python -m pip install -r requirements.txt
-export FLASK_APP=app
-./venv/bin/python -m flask run --host=0.0.0.0
+source ./venv/bin/activate
+python -m pip install -r requirements.txt
+python -m gunicorn -b 0.0.0.0:33000 app:app
