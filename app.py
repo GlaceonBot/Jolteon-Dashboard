@@ -18,6 +18,8 @@ app.config["DISCORD_CLIENT_SECRET"] = os.getenv('client_secret')
 app.config["DISCORD_REDIRECT_URI"] = os.getenv('redirect_uri')
 app.config["DISCORD_BOT_TOKEN"] = os.getenv('bot_token')  
 
+discord = DiscordOAuth2Session(app)
+
 def contents(file) -> str:
   with open(root / file) as file:
     return file.read()
@@ -76,7 +78,7 @@ def callback():
 
 @app.errorhandler(Unauthorized)
 def redirect_unauthorized(e):
-    return redirect(url_for("jolteon/login"))
+    return redirect(url_for("/login"))
 
 
 @app.route("/me/")
