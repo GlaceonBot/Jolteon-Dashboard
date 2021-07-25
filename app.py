@@ -82,7 +82,7 @@ def redirect_unauthorized(e):
     return redirect(url_for("/login"))
 
 
-@app.route("/me/")
+@app.route("/guilds")
 @requires_authorization
 def me():
     user = discord.fetch_user()
@@ -95,4 +95,6 @@ def me():
             <img src='{user.avatar_url}' />
         </body>
     </html>"""
+
+@app.route("/guilds")
 
