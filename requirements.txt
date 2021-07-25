@@ -1,6 +1,6 @@
 flask[async]
 gunicorn
-dotenv
+python-dotenv
 aiomysql
 discord
 pynacl
