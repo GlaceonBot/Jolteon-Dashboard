@@ -61,3 +61,36 @@ async def hello_world(guildid):
 async def bot_invite_redirect():
   redirect = open(root / "invite.html", 'r')
   return redirect.read()
+
+@app.route("/login/")
+def login():
+    return discord.create_session()
+
+
+@app.route("/callback/")
+def callback():
+    discord.callback()
+    user = discord.fetch_user()
+    welcome_user(user)
+    return redirect(url_for(".me"))
+
+
+@app.errorhandler(Unauthorized)
+def redirect_unauthorized(e):
+    return redirect(url_for("login"))
+
+
+@app.route("/me/")
+@requires_authorization
+def me():
+    user = discord.fetch_user()
+    return f"""
+    <html>
+        <head>
+            <title>{user.name}</title>
+        </head>
+        <body>
+            <img src='{user.avatar_url}' />
+        </body>
+    </html>"""
+
