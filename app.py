@@ -71,13 +71,12 @@ def login():
 def callback():
     discord.callback()
     user = discord.fetch_user()
-    welcome_user(user)
     return redirect(url_for(".me"))
 
 
 @app.errorhandler(Unauthorized)
 def redirect_unauthorized(e):
-    return redirect(url_for("login"))
+    return redirect(url_for("jolteon/login"))
 
 
 @app.route("/me/")
