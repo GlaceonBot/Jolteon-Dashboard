@@ -53,7 +53,7 @@ async def hello_world(guildid):
           </tr>'''
           factoids_and_contents_list.append(complete_factoid_info)
           
-        return contents("jolteon/tagslist-top.html").replace('[[guildid]]', str(guildid)) + "".join(factoids_and_contents_list) + contents("jolteon/tagslist-bottom.html")
+        return contents("tagslist-top.html").replace('[[guildid]]', str(guildid)) + "".join(factoids_and_contents_list) + contents("tagslist-bottom.html")
 
         
     else:
