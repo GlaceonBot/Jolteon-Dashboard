@@ -82,21 +82,21 @@ def redirect_unauthorized(e):
     return redirect(url_for("/login"))
 
 
-@app.route("/guilds")
-@requires_authorization
-def me():
-    user = discord.fetch_user()
-    return f"""
-    <html>
-        <head>
-            <title>{user.name}</title>
-        </head>
-        <body>
-            <img src='{user.avatar_url}' />
-        </body>
-    </html>"""
+#@app.route("/guilds")
+#@requires_authorization
+#def me():
+    #user = discord.fetch_user()
+    #return f"""
+    #<html>
+        #<head>
+            #<title>{user.name}</title>
+        #</head>
+        #<body>
+            #<img src='{user.avatar_url}' />
+        #</body>
+    #</html>"""
 
 @app.route("/guilds")
 def guild_lister():
-  return("Someday thus will do something")
+  return("Someday this page will do something")
 
